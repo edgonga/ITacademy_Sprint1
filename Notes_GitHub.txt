@@ -1,0 +1,20 @@
+Comandos relevantes para Github desde cmd:
+
+touch "X".js --> para crear un nuevo archivo en la branch en la que estamos
+checkout -b "X".js v--> para crear una branch y moverse alli
+branch --> para crear una branch
+checkout "X" --> para moverse a una branch
+git add "X" --> para meter los cambios en staging
+git status --> para ver que commits se encuentran en la staging y cuáles ya han sido aceptadas
+
+----------------
+BEST PRACTICE:
+En GitHub poner la branch "Dev" como default en lugar de "Main"
+Esto en los settings de GitHub se debe configurar
+----------------
+
+git pull origin dev --> hacer un commit de la branch donde estamos a "Dev", es decir, los cambios de la branch donde estamos, llevarlas a "Dev"
+nano "X" --> para abrir y poder modificar un archivo en la misma cmd
+
+Para hacer un add que toca a diferentes archivos que empiezan con la misma letra (Ejemplo: Readme1, Readme2, Readme3) se puede generalizar la instrucción con:
+git add R*
