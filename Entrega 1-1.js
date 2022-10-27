@@ -132,8 +132,22 @@ var matrixFunctions = [
 
 for (var i = 0; i < matrixFunctions.length; i++) {
 
-    matrixFunctions[i];
+    (matrixFunctions[i]());
 
 }
 
-//De momento no da error, pero, no devuelve los console.log de las funciones
+
+
+/*
+--Nivell 3
+- Exercici 1
+Crea una funció anònima autoinvocable igualada a una variable que mostri per consola
+el nom de l'usuari/ària a rebut com a paràmetre.
+*/
+
+var anonymousName = (function () {
+
+    var user_name = 'Eufrasia'
+    console.log(user_name);
+
+}) ();
