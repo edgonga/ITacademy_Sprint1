@@ -25,9 +25,44 @@ Crea una arrow function que, rebent un paràmetre, retorni
 un objecte amb un atribut que tingui com a valor el paràmetre rebut.
 */
 
-const x = (a) => {
+//Crear objeto person
 
-    console.log(a);
-    return a;
+const person = {
+    
+    firstName : 'Marina',
+    lastName: 'Palencia'   
 
-}('Marina'); 
+};
+
+// Declarar función arrow que devuelva el objeto a 
+//¿un objeto se puede imprimir tal cual?
+
+person =
+ ((agePerson) => {
+
+    person.age = agePerson
+    console.log(person.age);
+    
+
+})(24); 
+
+
+/*
+-- Nivell 2
+- Exercici 2
+Crea una classe "Persona" que rebi un paràmetre
+'nom' en ser instanciada. La classe inclourà un mètode 
+dirNom que imprimeixi per consola el paràmetre 'nom'.
+Invoca el mètode dirNom des de fora de la classe.
+*/
+
+
+
+
+
+
+
+
+
+
+
