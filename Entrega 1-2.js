@@ -25,7 +25,7 @@ Crea una arrow function que, rebent un paràmetre, retorni
 un objecte amb un atribut que tingui com a valor el paràmetre rebut.
 */
 
-//Crear objeto person
+
 
 const person = {
     
@@ -59,7 +59,50 @@ Invoca el mètode dirNom des de fora de la classe.
 
 
 
+class footballPlayer {
+    constructor (tshirtName) {
+        this.tshirtName = tshirtName;
+        dirNom()
+            console.log(tshirtName);
+    }
+    
+}
 
+var robertLewandowski = new footballPlayer('Lewandowski');
+robertLewandowski.dirNom();
+
+
+/*
+-- Nivell 3
+- Exercici 1
+Escriu una function creadora d'objectes que faci 
+instàncies d'una classe abstracta. Invoca-la amb diferents definicions.
+*/
+
+class marvelAvengers {
+
+    constructor() {
+        if (this.constructor == marvelAvengers) {
+            throw new Error('Este héroe es de DC Comics')
+        }
+    }
+
+    fly() {
+        console.log("Volando!!");
+    }
+}
+
+function heroCreater(heroName) {
+
+    class heroName extends marvelAvengers {
+        fight() {
+            console.log('Luchando!');
+        }
+    }
+
+}
+
+heroCreater('Hulk');
 
 
 
