@@ -60,16 +60,21 @@ Invoca el mètode dirNom des de fora de la classe.
 
 
 class footballPlayer {
-    constructor (tshirtName) {
+    constructor(tshirtName) {
         this.tshirtName = tshirtName;
-        dirNom()
-            console.log(tshirtName);
+        
+    }
+
+    dirNom() {
+            return this.tshirtName(tshirtName)
+            
     }
     
 }
 
-var robertLewandowski = new footballPlayer('Lewandowski');
-robertLewandowski.dirNom();
+let robertLewandowski = new footballPlayer('Lewandowski');
+let callLewandowski = robertLewandowski.dirNom();
+console.log(callLewandowski);
 
 
 /*
@@ -79,7 +84,7 @@ Escriu una function creadora d'objectes que faci
 instàncies d'una classe abstracta. Invoca-la amb diferents definicions.
 */
 
-class marvelAvengers {
+/*class marvelAvengers {
 
     constructor() {
         if (this.constructor == marvelAvengers) {
@@ -103,6 +108,7 @@ function heroCreater(heroName) {
 }
 
 heroCreater('Hulk');
+*/
 
 
 
