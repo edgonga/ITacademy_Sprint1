@@ -121,34 +121,54 @@ let salaries = [{
     salary: 2000
 }];
 
-//console.log(employees[1][1])
 
-// getEmployee = new Promise((resolve, reject) => {
-//     if (employeeID > 0 && employeeID < 4) {
-        
-//     }
+
+const employeeID = 2
+
+// const employeeSelected = employees.filter((name) => {
+//     return name.id == employeeID
 // })
+// const salarySelected = salaries.filter((salary) => {
+//     return salary.id == employeeID
+//})
 
 
 
-var getEmployee = function (employeeID) {
+var employeeSelected = employees.filter(name => name.id == employeeID)
+var salarySelected = salaries.filter(salary => salary.id == employeeID)
+
+
+console.log(employeeSelected);
+console.log(salarySelected);
+
+
+var getEmployee =  (employeeID) => {
     return new Promise((resolve, reject) => {
-        
-        if (employeeID > 0 && employeeID < 4) {
-            resolve(console.log('Resolved'))
-                //employees[employeeID]  + " - " + salaries[employeeID]));
+
+        if (employeeID > 4 && employeeID < 0) {
+            
+                        
+            reject('Failed')
+                
+                
+                    
         }   else {
-            reject()//new Error("Este ID no existe"));
+            resolve({
+                nameMessage: `El trabajador seleccionado es ${employeeSelected}`,  
+                salaryMessage: ` con un sueldo de ${salarySelected}`
+            })
         }
     })
 }
 
-getEmployee(2)
-    .then(res => {console.log(
-        employees[employeeID]  + " - " + salaries[employeeID]);
-
+getEmployee()
+    .then((nameMessage, salaryMessage) => {
+        console.log(nameMessage + salaryMessage)
     })
-    .catch(err => {console.log('No resolved')
+    .catch((error) => console.log("Error: " + error))
 
-    })
+
+
+
+
 
