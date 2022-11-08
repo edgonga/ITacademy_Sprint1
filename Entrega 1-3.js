@@ -123,7 +123,6 @@ let salaries = [{
 
 
 
-const employeeID = 2
 
 // const employeeSelected = employees.filter((name) => {
 //     return name.id == employeeID
@@ -134,39 +133,70 @@ const employeeID = 2
 
 
 
-var employeeSelected = employees.filter(name => name.id == employeeID)
-var salarySelected = salaries.filter(salary => salary.id == employeeID)
 
-
-console.log(employeeSelected);
-console.log(salarySelected);
-
-
-var getEmployee =  (employeeID) => {
+const getEmployee =  (employeeID) => {
     return new Promise((resolve, reject) => {
 
-        if (employeeID > 4 && employeeID < 0) {
+        const employeeSelected = employees.find(name => name.id == employeeID)
+        
+        if (employeeSelected) {
             
-                        
-            reject('Failed')
+            
+
+            resolve(employeeSelected)
                 
                 
                     
-        }   else {
-            resolve({
-                nameMessage: `El trabajador seleccionado es ${employeeSelected}`,  
-                salaryMessage: ` con un sueldo de ${salarySelected}`
-            })
+        }   else { 
+                
+            reject('Failed')
         }
     })
 }
 
-getEmployee()
-    .then((nameMessage, salaryMessage) => {
-        console.log(nameMessage + salaryMessage)
-    })
+getEmployee(3)
+    .then((res) => 
+        console.log(res)
+    )
     .catch((error) => console.log("Error: " + error))
 
+
+
+/*
+-- Nivel 2
+- Exercici 2
+Crea una altra arrow function getSalary() similar a l'anterior 
+que rebi com a paràmetre un objecte employee i retorni el seu salari.
+*/
+
+
+const getSalary = (employeeResult) => {
+    return new Promise ((resolve, reject ) => {
+        const salarySelected = salaries.find(salary => salary.name == employeeResult)
+        if (employeeResult) {
+
+            resolve(salarySelected)
+        }
+            else {
+                reject("Despedido")
+            }
+    })
+
+}
+
+getSalary(getEmployee(3)) //Aqui le tengo que pasar un parámetro que sea un 
+//objeto Employee, es decir, que tenga dentro 
+//por ej. { id: 3, name: 'Jeff Bezos' } y que de alli coja el .name
+//y Jeff Bezos sea el parámetro pasado
+//De momento con getEmployee(3) no funciona
+    
+    .then((res) => {
+        console.log(res)
+    })
+    .catch((error) => {
+        console.log(error)
+
+    })
 
 
 
