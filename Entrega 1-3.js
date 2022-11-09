@@ -62,17 +62,16 @@ function laVidaEsUnaBambola(min_number, max_number, jour, dia) {
         return Math.floor(Math.random() * (max_number - min_number) + min_number), dia;
         
         
-        //Porque no puedo declarar la variable dia dentro de esta función 
-        //y utilizarla como parámetro en la función de ganadorLoteria?
+
 }
-//Descomentar las dos lineas siguientes para que el código funcione
+
 const jour = new Date();
 let dia = jour.getDay();
 
 
 ganadorLoteria = (dayOfTheWeek, numGanador) => {
 
-    //hacer el if
+
     if (dayOfTheWeek > 6) {
         numGanador = String(numGanador)
         console.log(`El número premiado de la loteria es el ${numGanador}`)
@@ -81,12 +80,13 @@ ganadorLoteria = (dayOfTheWeek, numGanador) => {
     }
 }
 
-// Faig un delay de 2.5 segons perque aquest exercici no s'executi abans
+// Faig un delay de 0.5 segons perque aquest exercici no s'executi abans
 // del primer exercici
 
-setTimeout(() => {
+setTimeout(
+    () => {
     ganadorLoteria(dia, laVidaEsUnaBambola(1, 1000));
-    }, 2500)
+    }, 2000)
 
 
 
@@ -172,7 +172,8 @@ que rebi com a paràmetre un objecte employee i retorni el seu salari.
 
 const getSalary = (employeeResult) => {
     return new Promise ((resolve, reject ) => {
-        const salarySelected = salaries.find(salary => salary.name == employeeResult)
+        const salarySelected = salaries.find(salary => salary.id == employeeResult)
+        
         if (employeeResult) {
 
             resolve(salarySelected)
@@ -184,18 +185,54 @@ const getSalary = (employeeResult) => {
 
 }
 
-getSalary(getEmployee(3)) //Aqui le tengo que pasar un parámetro que sea un 
-//objeto Employee, es decir, que tenga dentro 
-//por ej. { id: 3, name: 'Jeff Bezos' } y que de alli coja el .name
-//y Jeff Bezos sea el parámetro pasado
-//De momento con getEmployee(3) no funciona
-    
+getSalary(getEmployee(1)
     .then((res) => {
         console.log(res)
     })
     .catch((error) => {
         console.log(error)
+    }))
+    
 
+
+/*
+-- Nivell 2
+- Exercici 3
+Invoca la primera funció getEmployee() i després getSalary()
+ niant l'execució de les dues promises de manera que es retorni 
+ per la consola el nom de l'empleat/da i el seu salari.
+*/
+    
+
+getEmployee(2)
+    .then((res1) => {
+        getSalary(2)
+            .then(res2 =>{
+                console.log(res1.name + ' ' + res2.salary)
+            })
+    })
+
+
+/*
+-- Nivell 3
+- Exercici 1
+Fixa un element catch a la invocació del 
+nivell anterior que capturi qualsevol error i el
+ mostri per la consola.
+*/
+
+getEmployee()
+    .then((res1) => {
+        getSalary()
+            .then(res2 =>{
+                console.log(res1.name + ' ' + res2.salary)
+            })
+            .catch(error2 =>{
+                console.log('Super erreur' + error2)
+            })
+    })
+    .catch(error1 =>{
+        console.log('Erreur' + error1)
     })
 
 
