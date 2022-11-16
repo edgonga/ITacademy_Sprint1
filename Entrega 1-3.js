@@ -124,12 +124,7 @@ let salaries = [{
 
 
 
-// const employeeSelected = employees.filter((name) => {
-//     return name.id == employeeID
-// })
-// const salarySelected = salaries.filter((salary) => {
-//     return salary.id == employeeID
-//})
+
 
 
 
@@ -139,6 +134,14 @@ const getEmployee =  (employeeID) => {
 
         const employeeSelected = employees.find(name => name.id == employeeID)
         
+        if (typeof employeeID !== 'number') {
+            reject('Este id no existe')
+            
+        }
+        if (employeeID < 1 || employeeID > 3 ) {
+
+            reject('Debes introducir un id del 1 al 3')
+        }
         if (employeeSelected) {
             
             
@@ -156,7 +159,7 @@ const getEmployee =  (employeeID) => {
 
 getEmployee(3)
     .then((res) => 
-        console.log(res)
+        console.log(res.name)
     )
     .catch((error) => console.log("Error: " + error))
 
@@ -174,7 +177,14 @@ const getSalary = (employeeResult) => {
     return new Promise ((resolve, reject ) => {
         const salarySelected = salaries.find(salary => salary.id == employeeResult)
         
+        // if(typeof employeeResult !== 'number') {
+        //     reject('Introduzca un número')
+        // }
+        // if (employeeResult < 1 || employeeResult > 4) {
+        //     reject('El id proporcionado debe estar entre 1 y 3')
+        // }
         if (employeeResult) {
+            
 
             resolve(salarySelected)
         }
@@ -238,4 +248,9 @@ getEmployee()
 
 
 
+
+module.exports = laVidaEsUnaBambola
+module.exports = ganadorLoteria
+module.exports = getEmployee
+module.exports = getSalary
 

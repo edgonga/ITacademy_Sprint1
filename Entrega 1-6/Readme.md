@@ -13,6 +13,7 @@ Es a dir, la funció **ganadorLoteria** tindrà un arxiu **"ganadorLoteria.test.
 ##Unit tests notes
 
 --> laVidaEsUnaBambola
+
 **min_number** 
 és un número enter positiu
 false si li passem un string
@@ -33,6 +34,7 @@ false si li passem un string
 
 
 --> ganadorLoteria
+
 **dayOfTheWeek** 
 ha de ser un número entre 0 i 6 (diumenge es representat en 0)
 false si li passem un 7
