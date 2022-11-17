@@ -16,9 +16,6 @@ const pibMundial = (pibEuropa, pibAmerica) => {
     return pibEuropa + pibAmerica
 }
 
-console.log((pibMundial("Holaaa", 4)))
-console.log(Number.isInteger((pibMundial("Holaa", 5))))
-
 
 
 //Resta

@@ -15,9 +15,16 @@ const assistantDetails = {
     assistantState: 'borracho'
 
 }
-const discoEntrance = new Promise((resolve, reject) => {
 
-    if(assistantDetails.assistantState != 'borracho' && assistantDetails.assistantAge > 17 ) {
+
+
+const lucasAge = assistantDetails.assistantAge
+const lucasState = assistantDetails.assistantState
+
+const discoEntrance = (isDrunk, isUnderEighteen) => {
+    return new Promise((resolve, reject) => {
+
+    if(isDrunk != 'borracho' && isUnderEighteen > 17 ) {
 
         
         resolve()
@@ -29,9 +36,9 @@ const discoEntrance = new Promise((resolve, reject) => {
         
     }
 });
+}
 
-
-discoEntrance
+discoEntrance(lucasState, lucasAge)
     .then(res => {
         console.log('Adelante')
     })
@@ -39,7 +46,6 @@ discoEntrance
         
         console.log('Vete por donde has venido')
     });
-
 
 
 /*
@@ -51,28 +57,28 @@ Crea una arrow function que rebi un paràmetre i una funció callback
 */
 
 
-function laVidaEsUnaBambola(min_number, max_number, jour, dia) {
+laVidaEsUnaBambola = () => {
 
     
-    
-        min_number = Math.ceil(min_number);
-        max_number = Math.floor(max_number);
-        jour = new Date();
-        dia = jour.getDay();
-        return Math.floor(Math.random() * (max_number - min_number) + min_number), dia;
-        
+        const min = 1 
+        const max = 1000
+        min_number = Math.ceil(min);
+        max_number = Math.floor(max);
+        numGanador = Math.floor(Math.random() * (max_number - min_number) + min_number);
+        return numGanador
         
 
 }
 
-const jour = new Date();
-let dia = jour.getDay();
+jour = new Date();
+dia = jour.getDay();
 
 
-ganadorLoteria = (dayOfTheWeek, numGanador) => {
+ganadorLoteria = (dayOfTheWeek, sorteoCallback) => {
 
 
-    if (dayOfTheWeek > 6) {
+    if (dayOfTheWeek > 0 && dayOfTheWeek < 6) {
+        numGanador = sorteoCallback()
         numGanador = String(numGanador)
         console.log(`El número premiado de la loteria es el ${numGanador}`)
     }   else {
@@ -80,13 +86,7 @@ ganadorLoteria = (dayOfTheWeek, numGanador) => {
     }
 }
 
-// Faig un delay de 0.5 segons perque aquest exercici no s'executi abans
-// del primer exercici
-
-setTimeout(
-    () => {
-    ganadorLoteria(dia, laVidaEsUnaBambola(1, 1000));
-    }, 2000)
+ganadorLoteria(dia, laVidaEsUnaBambola)
 
 
 
@@ -129,7 +129,7 @@ let salaries = [{
 
 
 
-const getEmployee =  (employeeID) => {
+const getEmployee = (employeeID) => {
     return new Promise((resolve, reject) => {
 
         const employeeSelected = employees.find(name => name.id == employeeID)
@@ -157,9 +157,9 @@ const getEmployee =  (employeeID) => {
     })
 }
 
-getEmployee(3)
+getEmployee(2)
     .then((res) => 
-        console.log(res.name)
+        console.log(res)
     )
     .catch((error) => console.log("Error: " + error))
 
@@ -175,14 +175,17 @@ que rebi com a paràmetre un objecte employee i retorni el seu salari.
 
 const getSalary = (employeeResult) => {
     return new Promise ((resolve, reject ) => {
-        const salarySelected = salaries.find(salary => salary.id == employeeResult)
+    
         
-        // if(typeof employeeResult !== 'number') {
-        //     reject('Introduzca un número')
-        // }
-        // if (employeeResult < 1 || employeeResult > 4) {
-        //     reject('El id proporcionado debe estar entre 1 y 3')
-        // }
+        const employeeResultID = employeeResult.id
+        const salarySelected = salaries.find(salary => salary.id == employeeResultID)
+        
+        if (typeof employeeResultID !== 'number') {
+             reject(Error('Dentro del parámetro introducido debe tener un id que sea un número'))
+        }
+        if (employeeResult < 1 || employeeResult > 4) {
+            reject(Error('El id proporcionado debe estar entre 1 y 3'))
+        }
         if (employeeResult) {
             
 
@@ -195,13 +198,14 @@ const getSalary = (employeeResult) => {
 
 }
 
-getSalary(getEmployee(1)
+getSalary(employees[2])
+//getSalary(getEmployee(1))
     .then((res) => {
-        console.log(res)
+        console.log(res.salary)
     })
     .catch((error) => {
         console.log(error)
-    }))
+    })
     
 
 
@@ -216,9 +220,9 @@ Invoca la primera funció getEmployee() i després getSalary()
 
 getEmployee(2)
     .then((res1) => {
-        getSalary(2)
+        getSalary(getEmployee(2))
             .then(res2 =>{
-                console.log(res1.name + ' ' + res2.salary)
+                console.log(res1.name + ' ' + res2)
             })
     })
 
@@ -231,7 +235,7 @@ nivell anterior que capturi qualsevol error i el
  mostri per la consola.
 */
 
-getEmployee()
+getEmployee(salaries[1])
     .then((res1) => {
         getSalary()
             .then(res2 =>{
@@ -242,7 +246,7 @@ getEmployee()
             })
     })
     .catch(error1 =>{
-        console.log('Erreur' + error1)
+        console.log('Erreur ' + error1)
     })
 
 

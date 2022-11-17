@@ -18,7 +18,7 @@ test('la suma es correcta', () => {
  })
 
  test('si li passem dos strings ens retornarà un FALSE', () => {
-    expect(pibMundial("el inglés se enseña mal", "yo no soy racista pero...")).toBe(False)
+    expect(pibMundial("el inglés se enseña mal", "yo no soy racista pero...")).toBe(false)
  })
 
 
@@ -37,7 +37,7 @@ test('la suma es correcta', () => {
  })
 
  test('si li passem dos strings ens retornarà un FALSE', () => {
-    expect(salariFinalMes("el inglés se enseña mal", "yo no soy racista pero...")).toBe(False)
+    expect(salariFinalMes("el inglés se enseña mal", "yo no soy racista pero...")).toBe(false)
  })
 
 
@@ -64,7 +64,7 @@ test('la suma es correcta', () => {
  })
 
  test('si li passem dos strings ens retornarà un FALSE', () => {
-    expect(distanciaRecorreguda("el inglés se enseña mal", "yo no soy racista pero...")).toBe(False)
+    expect(distanciaRecorreguda("el inglés se enseña mal", "yo no soy racista pero...")).toBe(false)
  })
 
 
@@ -88,5 +88,5 @@ test('la suma es correcta', () => {
  })
 
  test('si li passem dos strings ens retornarà un FALSE', () => {
-    expect(rentaPerCapita("el inglés se enseña mal", "yo no soy racista pero...")).toBe(False)
+    expect(rentaPerCapita("el inglés se enseña mal", "yo no soy racista pero...")).toBe(false)
  })
