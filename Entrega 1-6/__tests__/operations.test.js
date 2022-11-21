@@ -1,3 +1,8 @@
+/*
+Crea un arxiu amb les funcions sumar, restar, multiplicar i 
+dividir dos o més operands. Testeja la correcta execució d'aquestes funcions.
+*/
+
 const pibMundial = require('..__tests__/pibMundial')
 const salariFinalMes = require('..__tests__/salariFinalMes')
 const distanciaRecorreguda = require('..__tests__/distanciaRecorreguda')

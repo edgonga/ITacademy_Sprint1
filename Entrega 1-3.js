@@ -174,17 +174,18 @@ que rebi com a paràmetre un objecte employee i retorni el seu salari.
 
 
 const getSalary = (employeeResult) => {
-    return new Promise ((resolve, reject ) => {
+    return new Promise ((resolve, reject) => {
     
         
         const employeeResultID = employeeResult.id
         const salarySelected = salaries.find(salary => salary.id == employeeResultID)
         
+        
         if (typeof employeeResultID !== 'number') {
-             reject(Error('Dentro del parámetro introducido debe tener un id que sea un número'))
+             reject('Dentro del parámetro introducido debe tener un id que sea un número')
         }
         if (employeeResult < 1 || employeeResult > 4) {
-            reject(Error('El id proporcionado debe estar entre 1 y 3'))
+            reject('El id proporcionado debe estar entre 1 y 3')
         }
         if (employeeResult) {
             
@@ -198,7 +199,7 @@ const getSalary = (employeeResult) => {
 
 }
 
-getSalary(employees[2])
+getSalary(employees[1])
 //getSalary(getEmployee(1))
     .then((res) => {
         console.log(res.salary)
@@ -218,7 +219,7 @@ Invoca la primera funció getEmployee() i després getSalary()
 */
     
 
-getEmployee(2)
+getEmployee(3)
     .then((res1) => {
         getSalary(getEmployee(2))
             .then(res2 =>{

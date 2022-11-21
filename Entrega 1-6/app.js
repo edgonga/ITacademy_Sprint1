@@ -54,7 +54,7 @@ const rentaPerCapita = (ciutadans, rentaTotal) => {
 
 
 
-// module.exports = pibMundial
-// module.exports = salariFinalMes
-// module.exports = distanciaRecorreguda
-// module.exports = rentaPerCapita
+module.exports = pibMundial
+module.exports = salariFinalMes
+module.exports = distanciaRecorreguda
+module.exports = rentaPerCapita

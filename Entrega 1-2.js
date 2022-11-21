@@ -27,24 +27,23 @@ un objecte amb un atribut que tingui com a valor el paràmetre rebut.
 
 
 
-const person = {
+// const person = {
     
-    firstName : 'Marina',
-    lastName: 'Palencia'   
+//     firstName : 'Marina',
+//     lastName: 'Palencia'   
 
-};
+// };
 
-// Declarar función arrow que devuelva el objeto a 
-//¿un objeto se puede imprimir tal cual?
+// // Declarar función arrow que devuelva el objeto a 
+// //¿un objeto se puede imprimir tal cual?
 
-person =
- ((agePerson) => {
+// person ((agePerson) => {
 
-    person.age = agePerson
-    console.log(person.age);
+//     person.age = agePerson
+//     console.log(person.age);
     
 
-})(24); 
+// })(24); 
 
 
 /*
@@ -66,15 +65,17 @@ class footballPlayer {
     }
 
     dirNom() {
-            return this.tshirtName(tshirtName)
+            
+        return console.log(this.tshirtName)
+            
             
     }
     
 }
 
 let robertLewandowski = new footballPlayer('Lewandowski');
-let callLewandowski = robertLewandowski.dirNom();
-console.log(callLewandowski);
+robertLewandowski.dirNom();
+
 
 
 /*
@@ -110,7 +111,8 @@ function heroCreater(heroName) {
 heroCreater('Hulk');
 */
 
-
+module.exports = footballPlayer
+export {footballPlayer}
 
 
 

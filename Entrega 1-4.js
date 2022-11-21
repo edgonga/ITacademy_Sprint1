@@ -99,7 +99,15 @@ const canaryDelay = (peninsulaHour) => {
     return new Promise((resolve, reject) => {
         const canaryHour = peninsulaHour
 
-        if(peninsulaHour) { 
+        if (typeof peninsulaHour !== 'number') {
+            reject("El parámetro esperado es una hora del día")
+        }
+
+        if (peninsulaHour > 24 || peninsulaHour < 1) {
+            reject("La hora debe estar entre la 1h y las 24h")
+        }
+        
+        if (peninsulaHour) { 
             
             setTimeout(() => {
                 resolve(canaryHour)
@@ -192,3 +200,10 @@ elMercadoDeLaCripto(20000)
 // }
 
 // elMercadoDeLaCripto(bitcoinValue);
+
+
+
+module.exports = canaryDelay
+module.exports = whatTimeIs
+module.exports = dailyDay
+module.exports = elMercadoDeLaCripto
