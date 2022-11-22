@@ -27,23 +27,23 @@ un objecte amb un atribut que tingui com a valor el paràmetre rebut.
 
 
 
-// const person = {
+const person = {
     
-//     firstName : 'Marina',
-//     lastName: 'Palencia'   
+    firstName : 'Marina',
+    lastName: 'Palencia'   
 
-// };
+};
 
-// // Declarar función arrow que devuelva el objeto a 
-// //¿un objeto se puede imprimir tal cual?
+// Declarar función arrow que devuelva el objeto a 
+//¿un objeto se puede imprimir tal cual?
 
-// person ((agePerson) => {
+person ((agePerson) => {
 
-//     person.age = agePerson
-//     console.log(person.age);
+    person.age = agePerson
+    console.log(person.age);
     
 
-// })(24); 
+})(24); 
 
 
 /*
@@ -85,35 +85,37 @@ Escriu una function creadora d'objectes que faci
 instàncies d'una classe abstracta. Invoca-la amb diferents definicions.
 */
 
-/*class marvelAvengers {
+function marvelAvengers () {
 
-    constructor() {
-        if (this.constructor == marvelAvengers) {
-            throw new Error('Este héroe es de DC Comics')
-        }
-    }
-
-    fly() {
-        console.log("Volando!!");
+    
+    this.heroName = "Superman"
+    if (this.constructor == marvelAvengers) {
+        throw new Error('Este héroe es de DC Comics')
     }
 }
 
-function heroCreater(heroName) {
 
-    class heroName extends marvelAvengers {
-        fight() {
-            console.log('Luchando!');
-        }
-    }
 
+marvelAvengers.prototype.displayName = function() { 
+return "El nuevo héroe se llama " + this.heroName
 }
 
-heroCreater('Hulk');
-*/
+function heroCreater(newHeroName) {
+this.heroName=newHeroName
+}
+
+heroCreater.prototype = Object.create(marvelAvengers.prototype)
+
+var hulk = new heroCreater("El increíble Hulk")
+console.log(hulk.displayName())
+
 
 module.exports = footballPlayer
 export {footballPlayer}
-
+module.exports = marvelAvengers
+export {marvelAvengers}
+module.exports = heroCreater
+export {heroCreater}
 
 
 
