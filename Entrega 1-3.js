@@ -24,27 +24,27 @@ const lucasState = assistantDetails.assistantState
 const discoEntrance = (isDrunk, isUnderEighteen) => {
     return new Promise((resolve, reject) => {
 
-    if(isDrunk != 'borracho' && isUnderEighteen > 17 ) {
+        if (isDrunk != 'borracho' && isUnderEighteen > 17) {
 
-        
-        resolve()
-        
-    }   
-        
+
+            resolve('Adelante')
+
+        }
+
         else {
-        reject()
-        
-    }
-});
+            reject('Vete por donde has venido')
+
+        }
+    });
 }
 
 discoEntrance(lucasState, lucasAge)
     .then(res => {
-        console.log('Adelante')
+        console.log(res)
     })
     .catch(err => {
-        
-        console.log('Vete por donde has venido')
+
+        console.log(err)
     });
 
 
@@ -57,37 +57,20 @@ Crea una arrow function que rebi un paràmetre i una funció callback
 */
 
 
-laVidaEsUnaBambola = () => {
-
-    
-        const min = 1 
-        const max = 1000
-        min_number = Math.ceil(min);
-        max_number = Math.floor(max);
-        numGanador = Math.floor(Math.random() * (max_number - min_number) + min_number);
-        return numGanador
-        
-
-}
-
-jour = new Date();
-dia = jour.getDay();
-
-
-ganadorLoteria = (dayOfTheWeek, sorteoCallback) => {
-
-
-    if (dayOfTheWeek > 0 && dayOfTheWeek < 6) {
-        numGanador = sorteoCallback()
-        numGanador = String(numGanador)
-        console.log(`El número premiado de la loteria es el ${numGanador}`)
-    }   else {
-        console.log('Hoy es fin de semana, hoy no hay sorteo')
+callbackFunction = (parametro) => {
+    if (parametro > 3) {
+        console.log("Es correcto")
+    }
+    else {
+        console.log("Incorrecto")
     }
 }
 
-ganadorLoteria(dia, laVidaEsUnaBambola)
+implementCallback = (callback, parametroCallback) => {
+    callbackFunction(parametroCallback)
+}
 
+implementCallback(callbackFunction, 2)
 
 
 
@@ -105,11 +88,11 @@ let employees = [{
 }, {
     id: 2,
     name: 'Bill Gates'
-},{
+}, {
     id: 3,
     name: 'Jeff Bezos'
 }];
- 
+
 let salaries = [{
     id: 1,
     salary: 4000
@@ -132,33 +115,30 @@ let salaries = [{
 const getEmployee = (employeeID) => {
     return new Promise((resolve, reject) => {
 
-        const employeeSelected = employees.find(name => name.id == employeeID)
-        
         if (typeof employeeID !== 'number') {
             reject('Este id no existe')
-            
-        }
-        if (employeeID < 1 || employeeID > 3 ) {
 
-            reject('Debes introducir un id del 1 al 3')
         }
+        const employeeSelected = employees.find(name => name.id == employeeID)
+
+
         if (employeeSelected) {
-            
-            
+
+
 
             resolve(employeeSelected)
-                
-                
-                    
-        }   else { 
-                
+
+
+
+        } else {
+
             reject('Failed')
         }
     })
 }
 
 getEmployee(2)
-    .then((res) => 
+    .then((res) =>
         console.log(res)
     )
     .catch((error) => console.log("Error: " + error))
@@ -174,40 +154,35 @@ que rebi com a paràmetre un objecte employee i retorni el seu salari.
 
 
 const getSalary = (employeeResult) => {
-    return new Promise ((resolve, reject) => {
-    
-        
+    return new Promise((resolve, reject) => {
+
+        if (typeof employeeResult !== 'object') {
+            reject('Dentro del parámetro introducido debe tener un id que sea un número')
+        }
         const employeeResultID = employeeResult.id
         const salarySelected = salaries.find(salary => salary.id == employeeResultID)
-        
-        
-        if (typeof employeeResultID !== 'number') {
-             reject('Dentro del parámetro introducido debe tener un id que sea un número')
-        }
-        if (employeeResult < 1 || employeeResult > 4) {
-            reject('El id proporcionado debe estar entre 1 y 3')
-        }
-        if (employeeResult) {
-            
 
-            resolve(salarySelected)
+
+
+        if (salarySelected) {
+
+
+            resolve(salarySelected.salary)
+        } else {
+            reject("Despedido")
         }
-            else {
-                reject("Despedido")
-            }
     })
 
 }
 
 getSalary(employees[1])
-//getSalary(getEmployee(1))
     .then((res) => {
-        console.log(res.salary)
+        console.log(res)
     })
     .catch((error) => {
         console.log(error)
     })
-    
+
 
 
 /*
@@ -217,15 +192,20 @@ Invoca la primera funció getEmployee() i després getSalary()
  niant l'execució de les dues promises de manera que es retorni 
  per la consola el nom de l'empleat/da i el seu salari.
 */
-    
+
 
 getEmployee(3)
     .then((res1) => {
-        getSalary(getEmployee(2))
-            .then(res2 =>{
-                console.log(res1.name + ' ' + res2)
+        getSalary(res1)
+            .then(res2 => {
+                console.log({
+                    name: res1.name,
+                    salary: res2
+                })
             })
     })
+
+
 
 
 /*
@@ -239,14 +219,14 @@ nivell anterior que capturi qualsevol error i el
 getEmployee(salaries[1])
     .then((res1) => {
         getSalary()
-            .then(res2 =>{
+            .then(res2 => {
                 console.log(res1.name + ' ' + res2.salary)
             })
-            .catch(error2 =>{
+            .catch(error2 => {
                 console.log('Super erreur' + error2)
             })
     })
-    .catch(error1 =>{
+    .catch(error1 => {
         console.log('Erreur ' + error1)
     })
 
@@ -254,8 +234,8 @@ getEmployee(salaries[1])
 
 
 
-module.exports = laVidaEsUnaBambola
-module.exports = ganadorLoteria
+module.exports = callbackFunction
+module.exports = implementCallback
 module.exports = getEmployee
 module.exports = getSalary
 
