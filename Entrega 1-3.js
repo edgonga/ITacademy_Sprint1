@@ -126,7 +126,7 @@ const getEmployee = (employeeID) => {
 
 
 
-            resolve(employeeSelected)
+            resolve(employeeSelected.name)
 
 
 
@@ -137,9 +137,10 @@ const getEmployee = (employeeID) => {
     })
 }
 
-getEmployee(2)
+getEmployee(1)
     .then((res) =>
-        console.log(res)
+        console.log({
+            EmployeeName: res})
     )
     .catch((error) => console.log("Error: " + error))
 
@@ -177,7 +178,8 @@ const getSalary = (employeeResult) => {
 
 getSalary(employees[1])
     .then((res) => {
-        console.log(res)
+        console.log({
+            SalaryEmployee: res})
     })
     .catch((error) => {
         console.log(error)
@@ -202,6 +204,9 @@ getEmployee(3)
                     name: res1.name,
                     salary: res2
                 })
+            })
+            .catch((err) =>{
+                console.log(err)
             })
     })
 

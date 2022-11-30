@@ -70,7 +70,7 @@ async function getAsyncID(asyncID) {
     try{    
         const employeeAsync = await getEmployee(asyncID);
         const salaryAsync = await getSalary(employeeAsync.id);
-        console.log(`${employeeAsync.name} ${salaryAsync.salary}`);
+        console.log(`El salario de ${employeeAsync.name} es de ${salaryAsync.salary}€`);
     }  catch(err) {
         console.log(err)
 
@@ -87,12 +87,6 @@ Crea una nova funció asíncrona que cridi a una altra que retorni una
 Promise que efectuï la seva funció resolve() després 
 de 2 segons de la seva invocació.
 */
-
-
-
-
-
-
 
 
 const canaryDelay = (peninsulaHour) => {
@@ -129,7 +123,7 @@ async function whatTimeIs(currentHour) {
         
         const asyncPeninsulaHour = await canaryDelay(currentHour)
         console.log(`En la Peninsula son las ${asyncPeninsulaHour}h`)
-        const asyncCanaryHour = await canaryDelay(currentHour) -1
+        const asyncCanaryHour = asyncPeninsulaHour -1
         console.log(`Mientras que en las Canarias son las ${asyncCanaryHour}h`)
     }   catch(err) {
         console.log(err)
@@ -143,10 +137,8 @@ whatTimeIs(12);
 - Exercici 1
 Crea una funció que retorni el doble 
 del número que li passa com a paràmetre després de 2 segons.
-
-Crea una altra funció que rebi tres números i calculi la suma 
-dels seus dobles fent servir la funció anterior.
 */
+
 
 const dailyDay = (bitcoinValue) => {
     return new Promise((resolve, reject) => {
@@ -154,7 +146,7 @@ const dailyDay = (bitcoinValue) => {
 
         if(bitcoinValue) {
             setTimeout(() => {
-                resolve(bitcoinValue)
+                resolve(bitcoinValue + bitcoinValue)
             }, 2000)
     }
         else {
@@ -167,13 +159,8 @@ const dailyDay = (bitcoinValue) => {
 async function elMercadoDeLaCripto(bitcoin) {
     try{
         const yesterdayBitcoin = await dailyDay(bitcoin)
-        //const newDate = new Date
-        //const today = () => console.log(Date.now())
-        //const yesterday = () => console.log(today.getDate() -1);
-        //console.log(`${yesterday()} --> precio de bitcoin era ${yesterdayBitcoin}€`)
         console.log(`Ayer el precio del bitcoin era de ${yesterdayBitcoin}€`)
         const todayBitcoin = await dailyDay(bitcoin) * 2
-        //console.log(`${today()} --> precio del bitcoin es de ${todayBitcoin}€`)
         console.log(`Hoy el precio del bitcoin es de ${todayBitcoin}€`)
     }   catch(err) {
         console.log(err)
@@ -183,23 +170,24 @@ async function elMercadoDeLaCripto(bitcoin) {
 elMercadoDeLaCripto(20000)
 
 
+/*
+Crea una altra funció que rebi tres números i calculi la suma 
+dels seus dobles fent servir la funció anterior.
+*/
 
+async function sumOfDoubles(num1, num2, num3) {
+    try{
+        const asyncNum1 = await dailyDay(num1)
+        const asyncNum2 = await dailyDay(num2)
+        const asyncNum3 = await dailyDay(num3)
+        console.log(asyncNum1 + asyncNum2 + asyncNum3)
 
+    }   catch(err) {
+        console.log(err)
+    }
+}
 
-
-
-
-// bitcoinValue = 20000
-// console.log(bitcoinValue);
-
-// const elMercadoDeLaCripto = (bitcoinPrice) = async () => {
-//     console.log(`Ayer día 9 de noviembre, el precio de bitcoin era ${bitcoinPrice}€`)
-//     await dailyDay(bitcoinPrice)
-//     //bitcoinPrice = bitcoinPrice * 2
-//     console.log(`Hoy día 10 de noviembre, el precio del bitcoin es de ${bitcoinPrice}€`)
-// }
-
-// elMercadoDeLaCripto(bitcoinValue);
+sumOfDoubles(2, 4, 6)
 
 
 
