@@ -49,8 +49,8 @@ discoEntrance(lucasState, lucasAge)
 
 
 /*
--- Exercici 1
-- Nivell 2
+-- Nivell 1
+- Exercici 2
 Crea una arrow function que rebi un paràmetre i una funció callback
  i li passi a la funció un missatge o un altre 
  (que s'imprimirà per consola) en funció del paràmetre rebut.
@@ -67,7 +67,7 @@ callbackFunction = (parametro) => {
 }
 
 implementCallback = (callback, parametroCallback) => {
-    callbackFunction(parametroCallback)
+    callback(parametroCallback)
 }
 
 implementCallback(callbackFunction, 2)
@@ -117,19 +117,10 @@ const getEmployee = (employeeID) => {
 
         if (typeof employeeID !== 'number') {
             reject('Este id no existe')
-
         }
         const employeeSelected = employees.find(name => name.id == employeeID)
-
-
         if (employeeSelected) {
-
-
-
-            resolve(employeeSelected.name)
-
-
-
+            resolve(employeeSelected)
         } else {
 
             reject('Failed')
@@ -138,11 +129,8 @@ const getEmployee = (employeeID) => {
 }
 
 getEmployee(1)
-    .then((res) =>
-        console.log({
-            EmployeeName: res})
-    )
-    .catch((error) => console.log("Error: " + error))
+    .then((res) => console.log(`Nombre del empleado: ${res.name}`))
+    .catch((error) => console.log(`Error: ${error}`))
 
 
 
@@ -158,32 +146,19 @@ const getSalary = (employeeResult) => {
     return new Promise((resolve, reject) => {
 
         if (typeof employeeResult !== 'object') {
-            reject('Dentro del parámetro introducido debe tener un id que sea un número')
+            reject('El parámetro no es un objeto o el índice no existe')
         }
-        const employeeResultID = employeeResult.id
-        const salarySelected = salaries.find(salary => salary.id == employeeResultID)
-
-
-
+        const salarySelected = salaries.find(salary => salary.id == employeeResult.id)
         if (salarySelected) {
-
-
             resolve(salarySelected.salary)
-        } else {
-            reject("Despedido")
         }
     })
 
 }
 
-getSalary(employees[1])
-    .then((res) => {
-        console.log({
-            SalaryEmployee: res})
-    })
-    .catch((error) => {
-        console.log(error)
-    })
+getSalary(employees[2])
+    .then((res) => {console.log(`Salario empleado: ${res}`)})
+    .catch((error) => {console.log(`Error: ${error}`)})
 
 
 
@@ -196,18 +171,18 @@ Invoca la primera funció getEmployee() i després getSalary()
 */
 
 
-getEmployee(3)
+getEmployee(2)
     .then((res1) => {
         getSalary(res1)
             .then(res2 => {
-                console.log({
-                    name: res1.name,
-                    salary: res2
-                })
+                console.log(`Nombre: ${res1.name} y salario: ${res2}`)
             })
-            .catch((err) =>{
-                console.log(err)
+            .catch((err2) =>{
+                console.log(err2)
             })
+    })
+    .catch(err1 => {
+        console.log(err1)
     })
 
 
@@ -220,24 +195,6 @@ Fixa un element catch a la invocació del
 nivell anterior que capturi qualsevol error i el
  mostri per la consola.
 */
-
-getEmployee(salaries[1])
-    .then((res1) => {
-        getSalary()
-            .then(res2 => {
-                console.log(res1.name + ' ' + res2.salary)
-            })
-            .catch(error2 => {
-                console.log('Super erreur' + error2)
-            })
-    })
-    .catch(error1 => {
-        console.log('Erreur ' + error1)
-    })
-
-
-
-
 
 module.exports = callbackFunction
 module.exports = implementCallback
