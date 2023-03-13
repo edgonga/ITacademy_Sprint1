@@ -30,20 +30,21 @@ un objecte amb un atribut que tingui com a valor el paràmetre rebut.
 const person = {
     
     firstName : 'Marina',
-    lastName: 'Palencia'   
+    lastName: 'Palencia',
+    age: 24  
 
 };
 
 // Declarar función arrow que devuelva el objeto a 
 //¿un objeto se puede imprimir tal cual?
 
-person ((agePerson) => {
+const agePerson = (personObj) => {
 
-    person.age = agePerson
-    console.log(person.age);
-    
+    return console.log(personObj.age);
 
-})(24); 
+}; 
+
+agePerson(person)
 
 
 /*
@@ -85,37 +86,44 @@ Escriu una function creadora d'objectes que faci
 instàncies d'una classe abstracta. Invoca-la amb diferents definicions.
 */
 
-function marvelAvengers () {
+class marvelAvengers {
 
-    
-    this.heroName = "Superman"
-    if (this.constructor == marvelAvengers) {
-        throw new Error('Este héroe es de DC Comics')
+    #name
+    #superpower
+    #weakness
+
+    constructor(name, superpower, weakness) {
+        this.#name = this.#stringValidate(name)
+        this.#superpower = this.#stringValidate(superpower)
+        this.#weakness = this.#stringValidate(weakness)
+    }
+
+    #stringValidate(propertyValue) {
+        if(!propertyValue) {
+            throw Error('Debes introducir un valor')
+        }  
+        if(!typeof(propertyValue) === "string") {
+            throw Error (`Las propiedades de ${propertyValue} deben ser strings`)
+        }
+        return propertyValue
+    }
+
+    getHeroProperties() {
+        return {
+            heroName: this.#name,
+            heroSuperpower: this.#superpower,
+            heroWeakness: this.#weakness
+        }
     }
 }
 
-
-
-marvelAvengers.prototype.displayName = function() { 
-return "El nuevo héroe se llama " + this.heroName
+function heroCreater(newHeroName, newHeroSuperpower, newHeroWeakness) {
+    const avenger = new marvelAvengers(newHeroName, newHeroSuperpower, newHeroWeakness)
+    return console.log(avenger.getHeroProperties())
 }
 
-function heroCreater(newHeroName) {
-this.heroName=newHeroName
-}
-
-heroCreater.prototype = Object.create(marvelAvengers.prototype)
-
-var hulk = new heroCreater("El increíble Hulk")
-console.log(hulk.displayName())
-
-
-module.exports = footballPlayer
-export {footballPlayer}
-module.exports = marvelAvengers
-export {marvelAvengers}
-module.exports = heroCreater
-export {heroCreater}
+heroCreater("Spiderman", "Spider abilities", "no buildings")
+heroCreater("Thor", "God of thunder", "beer")
 
 
 
