@@ -13,7 +13,7 @@ function namePrompter (user_name) {
 }
 
 
-namePrompter('Eduardinho');
+//namePrompter('Eduardinho');
 
 
 
@@ -39,14 +39,12 @@ Invoca una funció que retorni un valor des de dins d'una template literal.
 
 function templateNamePrompter (user_name) {
 
-    console.log(`El valor es ${user_name}`);
-
+    return user_name
+    
 }
 
-user_value = "3";
-user_name = user_value;
+console.log(`El valor es ${templateNamePrompter(3)}`)
 
-templateNamePrompter(user_value);
 
 /*
 - Nivel 3
@@ -57,89 +55,99 @@ Invoca cada funció de l'array iterativament. Haurà de mostrar-se
 per consola el compte del 0 al 9 deu vegades.
 */
 
-var matrixFunctions = [
-    function firstCount () {
-        var counting1 = []
-        for (var i = 0; i < 10; i++) {
-            counting1.push(i);
-        }
-        console.log(counting1)
-    }
-    , function SecondCount () {
-        var counting2 = []
-        for (var i = 0; i < 10; i++) {
-            counting2.push(i);
-        }
-        console.log(counting2)
-    }
-    , function ThirdCount () {
-        var counting3 = []
-        for (var i = 0; i < 10; i++) {
-            counting3.push(i);
-        }
-        console.log(counting3)
-    }
-    , function FourthCount () {
-        var counting4 = []
-        for (var i = 0; i < 10; i++) {
-            counting4.push(i);
-        }
-        console.log(counting4)
-    }
-    , function FifthCount () {
-        var counting5 = []
-        for (var i = 0; i < 10; i++) {
-            counting5.push(i);
-        }
-        console.log(counting5)
-    }
-    , function SixthCount () {
-        var counting6 = []
-        for (var i = 0; i < 10; i++) {
-            counting6.push(i);
-        }
-        console.log(counting6)
-    }
-    , function SeventhCount () {
-        var counting7 = []
-        for (var i = 0; i < 10; i++) {
-            counting7.push(i);
-        }
-        console.log(counting7)
-    }
-    , function EighthCount () {
-        var counting8 = []
-        for (var i = 0; i < 10; i++) {
-            counting8.push(i);
-        }
-        console.log(counting8)
-    }
-    , function NinethCount () {
-        var counting9 = []
-        for (var i = 0; i < 10; i++) {
-            counting9.push(i);
-        }
-        console.log(counting9)
-    }
-    , function TenthCount () {
-        var counting10 = []
-        for (var i = 0; i < 10; i++) {
-            counting10.push(i);
-        }
-        console.log(counting10)
-    }
+// var matrixFunctions = [
+//     function firstCount () {
+//         var counting1 = []
+//         for (var i = 0; i < 10; i++) {
+//             counting1.push(i);
+//         }
+//         console.log(counting1)
+//     }
+//     , function SecondCount () {
+//         var counting2 = []
+//         for (var i = 0; i < 10; i++) {
+//             counting2.push(i);
+//         }
+//         console.log(counting2)
+//     }
+//     , function ThirdCount () {
+//         var counting3 = []
+//         for (var i = 0; i < 10; i++) {
+//             counting3.push(i);
+//         }
+//         console.log(counting3)
+//     }
+//     , function FourthCount () {
+//         var counting4 = []
+//         for (var i = 0; i < 10; i++) {
+//             counting4.push(i);
+//         }
+//         console.log(counting4)
+//     }
+//     , function FifthCount () {
+//         var counting5 = []
+//         for (var i = 0; i < 10; i++) {
+//             counting5.push(i);
+//         }
+//         console.log(counting5)
+//     }
+//     , function SixthCount () {
+//         var counting6 = []
+//         for (var i = 0; i < 10; i++) {
+//             counting6.push(i);
+//         }
+//         console.log(counting6)
+//     }
+//     , function SeventhCount () {
+//         var counting7 = []
+//         for (var i = 0; i < 10; i++) {
+//             counting7.push(i);
+//         }
+//         console.log(counting7)
+//     }
+//     , function EighthCount () {
+//         var counting8 = []
+//         for (var i = 0; i < 10; i++) {
+//             counting8.push(i);
+//         }
+//         console.log(counting8)
+//     }
+//     , function NinethCount () {
+//         var counting9 = []
+//         for (var i = 0; i < 10; i++) {
+//             counting9.push(i);
+//         }
+//         console.log(counting9)
+//     }
+//     , function TenthCount () {
+//         var counting10 = []
+//         for (var i = 0; i < 10; i++) {
+//             counting10.push(i);
+//         }
+//         console.log(counting10)
+//     }
 
     
 
-]
+// ]
 
-for (var i = 0; i < matrixFunctions.length; i++) {
+//  for (var i = 0; i < matrixFunctions.length; i++) {
 
-    (matrixFunctions[i]());
+//      (matrixFunctions[i]());
 
+//  }
+
+
+function counter() {
+    for (let index = 0; index < 10; index++) {
+        console.log(index)
+    }
 }
 
-
+for (let caller = 0; caller < 10; caller++) {
+    console.log(`Llamada número ${caller+1}`);
+    counter()
+}
 
 /*
 --Nivell 3
@@ -148,9 +156,8 @@ Crea una funció anònima autoinvocable igualada a una variable que mostri per c
 el nom de l'usuari/ària a rebut com a paràmetre.
 */
 
-var anonymousName = (function () {
+var anonymousName = (function (user_name) {
 
-    var user_name = 'Eufrasia'
     console.log(user_name);
 
-}) ();
+}) ("Eduardo");
