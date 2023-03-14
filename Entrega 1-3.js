@@ -129,8 +129,11 @@ const getEmployee = (employeeID) => {
 }
 
 getEmployee(1)
-    .then((res) => console.log(`Nombre del empleado: ${res.name}`))
-    .catch((error) => console.log(`Error: ${error}`))
+    .then((res) =>
+        console.log({
+            EmployeeName: res})
+    )
+    .catch((error) => console.log("Error: " + error))
 
 
 
@@ -196,8 +199,29 @@ nivell anterior que capturi qualsevol error i el
  mostri per la consola.
 */
 
-module.exports = callbackFunction
-module.exports = implementCallback
-module.exports = getEmployee
-module.exports = getSalary
+getEmployee(salaries[1])
+    .then((res1) => {
+        getSalary()
+            .then(res2 => {
+                console.log(res1.name + ' ' + res2.salary)
+            })
+            .catch(error2 => {
+                console.log('Super erreur' + error2)
+            })
+    })
+    .catch(error1 => {
+        console.log('Erreur ' + error1)
+    })
+
+
+
+
+
+module.exports = {
+    callbackFunction,
+    implementCallback,
+    getEmployee,
+    getSalary
+}
+
 
