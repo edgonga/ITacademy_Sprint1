@@ -13,10 +13,12 @@ const pibMundial = (pibEuropa, pibAmerica) => {
     if (typeof pibEuropa !== 'number' || typeof pibAmerica !== 'number') {
         return false
     }
-    return pibEuropa + pibAmerica
+    const pib = pibEuropa + pibAmerica
+    return pib
+    
 }
 
-
+console.log(pibMundial(4,2))
 
 //Resta
 
@@ -54,7 +56,10 @@ const rentaPerCapita = (ciutadans, rentaTotal) => {
 
 
 
-module.exports = pibMundial
-module.exports = salariFinalMes
-module.exports = distanciaRecorreguda
-module.exports = rentaPerCapita
+module.exports = {
+    pibMundial,
+    salariFinalMes,
+    distanciaRecorreguda,
+    rentaPerCapita
+
+}
