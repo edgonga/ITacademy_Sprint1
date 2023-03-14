@@ -3,10 +3,7 @@ Crea un arxiu amb les funcions sumar, restar, multiplicar i
 dividir dos o més operands. Testeja la correcta execució d'aquestes funcions.
 */
 
-const pibMundial = require('..__tests__/pibMundial')
-const salariFinalMes = require('..__tests__/salariFinalMes')
-const distanciaRecorreguda = require('..__tests__/distanciaRecorreguda')
-const rentaPerCapita = require('..__tests__/rentaPerCapita')
+const {pibMundial, salariFinalMes, distanciaRecorreguda, rentaPerCapita} = require('../app.js')
 
 // Suma
 
@@ -77,7 +74,7 @@ test('la suma es correcta', () => {
  // Divisió
 
  test('la divisió és correcta', () => {
-    expect(rentaPerCapita(4,2)).toBe(2)
+    expect(rentaPerCapita(2,4)).toBe(2)
  })
 
  test('la divisió entre ciutadans negatius és false', () => {
