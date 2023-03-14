@@ -73,7 +73,7 @@ const contandoOvejasParaDormir = (numeroDeCabras, isSleep) =>{
         contandoOvejasParaDormir(numeroDeCabras + 1)}, 1000)
 }
 
-contandoOvejasParaDormir(1, true)
+//contandoOvejasParaDormir(1, true)
 
 
 /*
@@ -108,7 +108,7 @@ accessDirOS = () => {
         }  
     }
 
-accessDirOS()
+//accessDirOS()
 
 
 /*
@@ -117,26 +117,34 @@ Crea una funció que creï dos fitxers codificats en hexadecimal
 i en base64 respectivament, a partir del fitxer del nivell 1.
 */
 
-//const { read } = require('fs');
-//const fs = require('fs');
-
-fileEncoder = (fileToBase64) => {
+fileEncoder = (fileToBase64, fileToHex) => {
     
-    const InputDataInsideTheFile = fs.readFileSync(fileToBase64, 'utf8')
-    console.log(`El string sin codificar es ${InputDataInsideTheFile}`)
-    const buff = new Buffer.from(InputDataInsideTheFile)
-    const base64file = buff.toString('base64')
-    const outputText = setTimeout(() => {fs.readFileSync(fileToBase64, 'utf8')}, 2000)
-    //const outputText = setTimeout(() => {fs.writeFileSync(fileToBase64, base64file)}, 2000) // Así es como estaba antes
-    console.log(`El string codificado es ${outputText}`)
+    const base64file = fs.writeFileSync(fileToBase64, 'Bielorussia')
+    const hexfile = fs.writeFileSync(fileToHex, 'Bielorussia')
+
+    const inputDataInsideTheBase64File = fs.readFileSync(fileToBase64, 'utf8')
+    const inputDataInsideTheHexFile = fs.readFileSync(fileToHex, 'utf8')
+
+    console.log(`El string sin codificar en Base64 es ${inputDataInsideTheBase64File}`)
+    console.log(`El string sin codificar en hexadecimal es ${inputDataInsideTheHexFile}`)
+
+    const buff64 = new Buffer.from(inputDataInsideTheBase64File)
+    const buffhex = new Buffer.from(inputDataInsideTheBase64File)
+
+    const base64fileEncrypted = buff64.toString('base64')
+    const hexfileEncrypted = buffhex.toString('hex')
+
+    const outputBase64 = fs.writeFileSync(fileToBase64, base64fileEncrypted)
+    const outputHex = fs.writeFileSync(fileToHex, hexfileEncrypted)
+
+    const encryptedDataInsideTheBase64File = fs.readFileSync(fileToBase64, 'utf8')
+    const encryptedDataInsideTheHexFile = fs.readFileSync(fileToBase64, 'hex')
+
+    console.log(`El string codificado en Base64 es ${encryptedDataInsideTheBase64File}`)
+    console.log(`El string codificado en hexadecimal es ${encryptedDataInsideTheHexFile}`)
+    
     
 }
 
-setTimeout(() => {fileEncoder('./helloworld.txt')}, 1000)
+fileEncoder('./base64.txt', './hex.txt')
 
-/* 
-------Chunks------
-1ro - Coger el texto actual que hay en el archivo en cuestión (helloworld.txt)
-2do - Codificar ese texto a base64 (y más tarde a hex)
-3ro - Escribir el texto codificado otra vez al archivo en cuestión (helloworld.txt) 
-*/
