@@ -3,8 +3,9 @@
     "version": "1.0.0",
     "author": "Your Name <email@example.com>",
     "scripts": {
-      "test": "jest"
+        "test": "jest"
+    },
+    "devDependencies": {
+        "jest": "^29.5.0"
     }
-  }
-
- 
+}
