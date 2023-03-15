@@ -38,14 +38,14 @@ const discoEntrance = (isDrunk, isUnderEighteen) => {
     });
 }
 
-discoEntrance(lucasState, lucasAge)
-    .then(res => {
-        console.log(res)
-    })
-    .catch(err => {
+// discoEntrance(lucasState, lucasAge)
+//     .then(res => {
+//         console.log(res)
+//     })
+//     .catch(err => {
 
-        console.log(err)
-    });
+//         console.log(err)
+//     });
 
 
 /*
@@ -57,20 +57,22 @@ Crea una arrow function que rebi un paràmetre i una funció callback
 */
 
 
-callbackFunction = (parametro) => {
-    if (parametro > 3) {
-        console.log("Es correcto")
+const callbackFunction = (parametro) => {
+    const num_parametro = parseInt(parametro)
+    if (num_parametro > 3 && typeof(num_parametro) === 'number') {
+        return console.log("Es correcto")
     }
     else {
         console.log("Incorrecto")
     }
 }
 
-implementCallback = (callback, parametroCallback) => {
-    callback(parametroCallback)
+const implementCallback = (callback, callbackParameter) => {
+    
+    callback(callbackParameter)
 }
 
-implementCallback(callbackFunction, 2)
+implementCallback(callbackFunction, "3")
 
 
 
@@ -128,12 +130,12 @@ const getEmployee = (employeeID) => {
     })
 }
 
-getEmployee(1)
-    .then((res) =>
-        console.log({
-            EmployeeName: res})
-    )
-    .catch((error) => console.log("Error: " + error))
+// getEmployee(1)
+//     .then((res) =>
+//         console.log({
+//             EmployeeName: res})
+//     )
+//     .catch((error) => console.log("Error: " + error))
 
 
 
@@ -159,9 +161,9 @@ const getSalary = (employeeResult) => {
 
 }
 
-getSalary(employees[2])
-    .then((res) => {console.log(`Salario empleado: ${res}`)})
-    .catch((error) => {console.log(`Error: ${error}`)})
+// getSalary(employees[2])
+//     .then((res) => {console.log(`Salario empleado: ${res}`)})
+//     .catch((error) => {console.log(`Error: ${error}`)})
 
 
 
@@ -174,19 +176,19 @@ Invoca la primera funció getEmployee() i després getSalary()
 */
 
 
-getEmployee(2)
-    .then((res1) => {
-        getSalary(res1)
-            .then(res2 => {
-                console.log(`Nombre: ${res1.name} y salario: ${res2}`)
-            })
-            .catch((err2) =>{
-                console.log(err2)
-            })
-    })
-    .catch(err1 => {
-        console.log(err1)
-    })
+// getEmployee(2)
+//     .then((res1) => {
+//         getSalary(res1)
+//             .then(res2 => {
+//                 console.log(`Nombre: ${res1.name} y salario: ${res2}`)
+//             })
+//             .catch((err2) =>{
+//                 console.log(err2)
+//             })
+//     })
+//     .catch(err1 => {
+//         console.log(err1)
+//     })
 
 
 
@@ -199,19 +201,19 @@ nivell anterior que capturi qualsevol error i el
  mostri per la consola.
 */
 
-getEmployee(salaries[1])
-    .then((res1) => {
-        getSalary()
-            .then(res2 => {
-                console.log(res1.name + ' ' + res2.salary)
-            })
-            .catch(error2 => {
-                console.log('Super erreur' + error2)
-            })
-    })
-    .catch(error1 => {
-        console.log('Erreur ' + error1)
-    })
+// getEmployee(salaries[1])
+//     .then((res1) => {
+//         getSalary()
+//             .then(res2 => {
+//                 console.log(res1.name + ' ' + res2.salary)
+//             })
+//             .catch(error2 => {
+//                 console.log('Super erreur' + error2)
+//             })
+//     })
+//     .catch(error1 => {
+//         console.log('Erreur ' + error1)
+//     })
 
 
 
@@ -221,7 +223,9 @@ module.exports = {
     callbackFunction,
     implementCallback,
     getEmployee,
-    getSalary
+    getSalary,
+    employees,
+    salaries
 }
 
 
