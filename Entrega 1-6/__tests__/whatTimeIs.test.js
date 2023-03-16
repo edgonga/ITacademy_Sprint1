@@ -1,0 +1,1 @@
+const {whatTimeIs} = require('../app/whatTimeIs')
