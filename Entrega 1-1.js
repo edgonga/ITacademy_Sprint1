@@ -8,7 +8,7 @@ invocar-la passant-li el nom com a paràmetre.
 
 function namePrompter (user_name) {
 
-    console.log('Hello ' + user_name);
+    console.log('Hello Mr. ' + user_name);
 
 }
 
