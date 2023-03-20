@@ -200,9 +200,3 @@ getAsyncID("hola") // Capturar que el parámetro no sea un number
 getAsyncID(4) // Capturar que no está entre 1 y 3
 whatTimeIs(25) // Capturar que la hora no sea dentro de las 24h
 whatTimeIs(true) // Capturar que el parámetro no sea un number
-
-
-module.exports = canaryDelay
-module.exports = whatTimeIs
-module.exports = dailyDay
-module.exports = elMercadoDeLaCripto
