@@ -114,19 +114,19 @@ const canaryDelay = (peninsulaHour) => {
       
 
 
-async function whatTimeIs(currentHour) {
+async function whatTimeIs(currentHour, callback) {
     try{
         
-        const asyncPeninsulaHour = await canaryDelay(currentHour)
+        const asyncPeninsulaHour = await callback(currentHour)
         console.log(`En la Peninsula son las ${asyncPeninsulaHour}h`)
-        const asyncCanaryHour = await canaryDelay(asyncPeninsulaHour)
+        const asyncCanaryHour = await callback(asyncPeninsulaHour)
         console.log(`Mientras que en las Canarias son las ${asyncCanaryHour -1}h`)
     }   catch(err) {
         console.log(err)
     }}
 
 
-whatTimeIs(12);
+whatTimeIs(12, canaryDelay);
 
 
 /*

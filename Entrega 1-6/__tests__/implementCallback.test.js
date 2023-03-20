@@ -35,17 +35,17 @@ describe('testear implementCallback con un bucle de parámetros que la función 
 })
 
 const cases = [["hola", "Incorrecto"], [true, "Incorrecto"], [[2,3,4], "Incorrecto"]]
-let index = 0
+let currentParameter = cases[0][0]
 
 describe('testear implementCallback con un bucle de parámetros que la función espera', () => {
     test.each(cases)(
-        `La función callback deberá ser ejecutada con ${cases[index][0]} y devolver ${cases[index][1]}`,
+        `La función callback deberá ser ejecutada con el cases y devolver ${cases[0][1]}`,
         (parameter, expected) => {
             const mockedCallback = jest.fn(callbackFunction)
             implementCallback(mockedCallback, parameter)
             expect(mockedCallback).toHaveBeenCalledWith(parameter)
-            expect(mockedCallback.mock.calls[0].value).toEqual(expected)
-            index = index+1
+            expect(mockedCallback.mock.results[0].value).toEqual(expected)
+            currentParameter = parameter
         }
     )
 })

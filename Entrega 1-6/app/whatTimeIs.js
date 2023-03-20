@@ -1,12 +1,10 @@
-const {canaryDelay} = require ('../app/canaryDelay')
-
-async function whatTimeIs(currentHour) {
+async function whatTimeIs(currentHour, callback) {
     try{
         
-        const asyncPeninsulaHour = await canaryDelay(currentHour)
+        const asyncPeninsulaHour = await callback(currentHour)
         console.log(`En la Peninsula son las ${asyncPeninsulaHour}h`)
-        // const asyncCanaryHour = await canaryDelay(asyncPeninsulaHour)
-        // console.log(`Mientras que en las Canarias son las ${asyncCanaryHour -1}h`)
+        const asyncCanaryHour = await callback(asyncPeninsulaHour)
+        console.log(`Mientras que en las Canarias son las ${asyncCanaryHour -1}h`)
     }   catch(err) {
         console.log(err)
     }}
