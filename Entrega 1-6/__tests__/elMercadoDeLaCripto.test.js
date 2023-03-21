@@ -3,9 +3,6 @@ Verifica mitjançant tests l'execució de l'exercici
  Async / Await N2 E1 utilitzant Jest Fake Timers.
 */
 
-
-
-const dailyDay = require('../../Entrega 1-4')
 const elMercadoDeLaCripto = require('../../Entrega 1-4')
 
 jest.useFakeTimers();

@@ -3,10 +3,8 @@ Verifica mitjançant tests la creació d'instàncies
 de la classe abstracta de l'exercici Classes & Arrow Functions N3 E1.
 */
 
-const marvelAvengers = require('../../Entrega 1-2')
-import { marvelAvengers } from '../../Entrega 1-2'
-const heroCreater = require('../../Entrega 1-2')
-import { heroCreater } from '../../Entrega 1-2'
+const {MarvelAvengers, heroCreater} = require('../app/marvelAvengers')
+
 
 describe("Creamos un nuevo objeto de la clase marvelAvengers", () => {
     const thor = new heroCreater();

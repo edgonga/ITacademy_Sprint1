@@ -3,32 +3,36 @@ Crea un mock que comprovi les crides al constructor de la classe Persona
  i al seu mètode. dirNom() en l'exercici Classes & Arrow Functions - N2 E2 i testeja que funcionen.
 */
 
+jest.mock('../app/FootballPlayer')  // IMPORTANTE, para testear clases, se debe poner la ruta dónde esa clase es definida
+                                    // De esta manera, todo lo que sea FootballPlayer, ya será mockeado
+                                    // Por lo tanto, no tendremos que convertir a mock la clase FootballPlayer ni su método
+                                    // No hacer FootballPlayer = jest.fn() ni FootballPlayer.dirNom = jest.fn()
 
-const footballPlayer = require('../../Entrega 1-2')
-import { ExplainVerbosity } from 'mongodb'
-import { footballPlayer } from '../../Entrega 1-2'
+const {FootballPlayer} = require('../app/FootballPlayer')
 
-
-jest.mock('../../Entrega 1-2')
-
-beforeEach(() => {   // Según documentación, sirve para limpiar todas las llamadas al constructor y métodos
-    footballPlayer.mockClear()
+test("Se vuelve a crear otro objeto y se mira que la llamada al método dirNom() se haga correctamente", () => {                  
+    const player = new FootballPlayer("Ronaldo")
+    const mockedDirNom = jest.spyOn(player, "dirNom").mockImplementation(() => 'Mocked Name')
+    expect(player.dirNom("CR7")).toBe('Mocked Name')
+    expect(mockedDirNom).toHaveBeenCalled()
+    mockedDirNom.mockRestore()
+    FootballPlayer.mockRestore()
 })
 
-
-it('Vamos a comprobar si la instancia rogerFederer, llama a la clase constructora footballPlayer', () => {
-    const rogerFederer = new footballPlayer('Roger Federer');
-    expect(footballPlayer).toHaveBeenCalledTimes(1);
-})
-
-it("Vamos a comprobar si el constructor llama al método dirNom()", () => {
-    // En este punto, el mockClear habrá limpiado la llamada al método dirNom() que hemos hecho en el 1.2
-    expect(footballPlayer).not.toHaveBeenCalled();
-
-    rogerFederer.dirNom();
+test('Vamos a comprobar si la instancia rogerFederer, llama a la clase constructora footballPlayer', () => {
+    new FootballPlayer('Roger Federer');
+    expect(FootballPlayer).toHaveBeenCalledTimes(1)
     
-    const mockFootballPlayer = footballPlayer.mock.instances[0]
-    const mockTshirtName = mockFootballPlayer.tshirtName
-    expect(mockTshirtName).toHaveBeenCalledWith('Roger Federer')
-    expect(mockTshirtName).toHaveBeenCalledTimes(1)
+})
+
+test('Ver que el mockRestore funciona correctamente y la clase aún no ha sido llamada', () => {
+    FootballPlayer.mockRestore()
+    expect(FootballPlayer).not.toHaveBeenCalled();
+})
+
+test("Vamos a comprobar si se llama al método dirNom() con el parámetro correspondiente", () => {
+    const player = new FootballPlayer('Arbeloa')
+    player.dirNom("Arbeloa")
+    expect(player.dirNom).toHaveBeenCalledWith('Arbeloa')
+    expect(player.dirNom).toHaveBeenCalledTimes(1)
 })
