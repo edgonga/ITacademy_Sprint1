@@ -31,3 +31,41 @@ describe("Marvel Avengers", () => {
 //         expect(ironman.displayName()).toBe('Ironman')
 //     })
 // })
+
+
+
+// ---------------------------------------
+
+
+// describe('MarvelAvengers', () => {
+//     it('should create a new hero with valid properties', () => {
+//       const avenger = new MarvelAvengers('Iron Man', 'Genius', 'Mortality');
+//       const properties = avenger.getHeroProperties();
+  
+//       expect(properties.heroName).toEqual('Iron Man');
+//       expect(properties.heroSuperpower).toEqual('Genius');
+//       expect(properties.heroWeakness).toEqual('Mortality');
+//     });
+  
+//     it('should throw an error if a property is not a string', () => {
+//       expect(() => new MarvelAvengers('Iron Man', 'Genius', 100)).toThrow();
+//     });
+  
+//     it('should throw an error if a property is not provided', () => {
+//       expect(() => new MarvelAvengers()).toThrow();
+//     });
+//   });
+  
+//   describe('heroCreater', () => {
+//     it('should create a new hero and log its properties', () => {
+//       const consoleSpy = jest.spyOn(console, 'log');
+//       heroCreater('Iron Man', 'Genius', 'Mortality');
+//       expect(consoleSpy).toHaveBeenCalledWith({
+//         heroName: 'Iron Man',
+//         heroSuperpower: 'Genius',
+//         heroWeakness: 'Mortality'
+//       });
+//       consoleSpy.mockRestore();
+//     });
+//   });
+  
