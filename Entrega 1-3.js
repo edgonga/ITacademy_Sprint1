@@ -38,14 +38,14 @@ const discoEntrance = (isDrunk, isUnderEighteen) => {
     });
 }
 
-// discoEntrance(lucasState, lucasAge)
-//     .then(res => {
-//         console.log(res)
-//     })
-//     .catch(err => {
+discoEntrance(lucasState, lucasAge)
+    .then(res => {
+        console.log(res)
+    })
+    .catch(err => {
 
-//         console.log(err)
-//     });
+        console.log(err)
+    });
 
 
 /*
@@ -161,9 +161,9 @@ const getSalary = (employeeResult) => {
 
 }
 
-// getSalary(employees[2])
-//     .then((res) => {console.log(`Salario empleado: ${res}`)})
-//     .catch((error) => {console.log(`Error: ${error}`)})
+getSalary(employees[2])
+    .then((res) => {console.log(`Salario empleado: ${res}`)})
+    .catch((error) => {console.log(`Error: ${error}`)})
 
 
 

@@ -137,21 +137,19 @@ del número que li passa com a paràmetre després de 2 segons.
 */
 
 
-const dailyDay = (bitcoinValue) => {
+const dailyDay = (value) => {
     return new Promise((resolve, reject) => {
-        
-
-        if(bitcoinValue) {
+        if(typeof(value) !== "number") {
+            reject("El bitcoin es una estafa piramidal")
+        }
+        if(value) {
             setTimeout(() => {
                 resolve({
-                    rawNumber: bitcoinValue,
-                    doubleNumber: bitcoinValue *2
+                    rawNumber: value,
+                    doubleNumber: value *2
                 })
             }, 3000)
     }
-        else {
-            reject("El bitcoin es una estafa piramidal")
-        }
     })
 }
 

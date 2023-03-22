@@ -14,7 +14,7 @@ class MarvelAvengers {
         if(!propertyValue) {
             throw Error('Debes introducir un valor')
         }  
-        if(!typeof(propertyValue) === "string") {
+        if(typeof(propertyValue) !== "string") {
             throw Error (`Las propiedades de ${propertyValue} deben ser strings`)
         }
         return propertyValue
@@ -33,7 +33,6 @@ function heroCreater(newHeroName, newHeroSuperpower, newHeroWeakness) {
     const avenger = new MarvelAvengers(newHeroName, newHeroSuperpower, newHeroWeakness)
     return console.log(avenger.getHeroProperties())
 }
-
 
 module.exports = {
     MarvelAvengers,

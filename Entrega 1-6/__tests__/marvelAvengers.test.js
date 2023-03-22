@@ -7,7 +7,6 @@ const {MarvelAvengers, heroCreater} = require('../app/marvelAvengers')
 
 
 describe("Marvel Avengers", () => {
-    const avengerDC = heroCreater('Iron Man', 'Genius', 'Mortality')
     const avenger = new MarvelAvengers('Iron Man', 'Genius', 'Mortality')
     const properties = avenger.getHeroProperties()
 
@@ -16,56 +15,34 @@ describe("Marvel Avengers", () => {
         expect(properties.heroSuperpower).toEqual("Genius")
         expect(properties.heroWeakness).toEqual("Mortality")                                     
     })
+    
+    test("Se devuelve el error previsto cuando la clase es creada sin pasar parámetros", () => {
+        expect(() => new MarvelAvengers()).toThrow("Debes introducir un valor")
+    })
+    
+    test("Si una propiedad de la clase no es un string, devuelve el mensaje previsto de error", () => {
+        expect(() => new MarvelAvengers("Captain America", "Super resistance", 23)).toThrow("Las propiedades de 23 deben ser strings")
+    })  
 })
-
-
-// test("displayName() devuelve undefined cuando es llamada sin pasar parámetros cuando hemos instanciado thor", () => {
-//     expect(thor.displayName()).toBeUndefined()
-// })
-
-
-// describe("Creamos el segundo nuevo objeto de la clase marvelAvengers", () => {
-//     const ironman = new heroCreater('Ironman');
-
-//     test("displayName() devuelve el nombre del héroe cuando es llamada  pasando parámetros al instanciar ironman", () => {
-//         expect(ironman.displayName()).toBe('Ironman')
-//     })
-// })
-
-
-
-// ---------------------------------------
-
-
-// describe('MarvelAvengers', () => {
-//     it('should create a new hero with valid properties', () => {
-//       const avenger = new MarvelAvengers('Iron Man', 'Genius', 'Mortality');
-//       const properties = avenger.getHeroProperties();
   
-//       expect(properties.heroName).toEqual('Iron Man');
-//       expect(properties.heroSuperpower).toEqual('Genius');
-//       expect(properties.heroWeakness).toEqual('Mortality');
-//     });
-  
-//     it('should throw an error if a property is not a string', () => {
-//       expect(() => new MarvelAvengers('Iron Man', 'Genius', 100)).toThrow();
-//     });
-  
-//     it('should throw an error if a property is not provided', () => {
-//       expect(() => new MarvelAvengers()).toThrow();
-//     });
-//   });
-  
-//   describe('heroCreater', () => {
-//     it('should create a new hero and log its properties', () => {
-//       const consoleSpy = jest.spyOn(console, 'log');
-//       heroCreater('Iron Man', 'Genius', 'Mortality');
-//       expect(consoleSpy).toHaveBeenCalledWith({
-//         heroName: 'Iron Man',
-//         heroSuperpower: 'Genius',
-//         heroWeakness: 'Mortality'
-//       });
-//       consoleSpy.mockRestore();
-//     });
-//   });
+describe('heroCreater', () => {
+    test('Un nuevo héroe se crea con la función heroCreater() y se muestra sus propiedades', () => {
+        const consoleSpy = jest.spyOn(console, "log")
+        heroCreater("Black Panther", "Super velocity", "Open spaces")
+        expect(consoleSpy).toHaveBeenCalledWith({
+            heroName: "Black Panther",
+            heroSuperpower: "Super velocity",
+            heroWeakness: "Open spaces"
+        })
+        consoleSpy.mockRestore()
+    })
+
+    test('Un nuevo héroe se crea con la función heroCreater() pero sin pasarle ningún parámetro, por lo tanto, un mensaje de error debe aparecer', () => {
+        expect(() => heroCreater()).toThrow("Debes introducir un valor")
+    })
+
+    test("Un nuevo héroe se crea con la función heroCreater() pero pasándole un parámetro que no es string, por lo tanto, un mensaje de error debe aparecer", () => {
+        expect(() => heroCreater("Thor", "God of thunder", [5])).toThrow("Las propiedades de 5 deben ser strings")
+    })
+  })
   

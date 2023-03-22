@@ -37,10 +37,8 @@ Invoca una funció que retorni un valor des de dins d'una template literal.
 */
 
 
-function templateNamePrompter (user_name) {
-
-    return user_name
-    
+function templateNamePrompter (user_number) {
+    return user_number
 }
 
 console.log(`El valor es ${templateNamePrompter(3)}`)
