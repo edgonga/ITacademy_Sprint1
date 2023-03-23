@@ -3,13 +3,31 @@ Verifica mitjançant tests l'execució de l'exercici
  Async / Await N2 E1 utilitzant Jest Fake Timers.
 */
 
-const elMercadoDeLaCripto = require('../../Entrega 1-4')
+const {elMercadoDeLaCripto} = require('../app/elMercadoDeLaCripto')
 
-jest.useFakeTimers();
-jest.spyOn(global, 'setTimeout')
+// jest.useFakeTimers();
+// jest.spyOn(global, 'setTimeout')
+describe("Callback", () => {
+    test("La primera ejecucuón de la callback recibe el parámetro que se espera", async() => {
+        const mockedCallback = jest.fn().mockReturnValue(45000)
+        await elMercadoDeLaCripto(45000, mockedCallback)
+        expect(mockedCallback).toHaveBeenCalledWith(45000)
+    })
+    
+    test("La segunda ejecución de la callback recibe el doble del parámetro introducido", async() => {
+        const mockCallback = jest.fn().mockReturnValue(3000)
+        await elMercadoDeLaCripto(3000, mockCallback)
+        expect(mockCallback).toHaveBeenLastCalledWith(6000)
+    })
+    
+    test("La callback es llamada dos veces", async() => {
+        const mockCallback = jest.fn().mockReturnValue(55)
+        await elMercadoDeLaCripto(55, mockCallback)
+        expect(mockCallback).toHaveBeenCalledTimes(2)
+    })
+})
 
-test('tenint en compte el timeout de 2 segons, la funció s executa', () => {
-    elMercadoDeLaCripto(15000);
-    expect(setTimeout).toHaveBeenCalledTimes(1);
-    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 2000)
- })
+describe("Console log del interior", () => {
+    test("")
+})
+

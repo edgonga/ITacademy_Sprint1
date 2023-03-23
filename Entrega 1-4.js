@@ -119,8 +119,8 @@ async function whatTimeIs(currentHour, callback) {
         
         const asyncPeninsulaHour = await callback(currentHour)
         console.log(`En la Peninsula son las ${asyncPeninsulaHour}h`)
-        const asyncCanaryHour = await callback(asyncPeninsulaHour)
-        console.log(`Mientras que en las Canarias son las ${asyncCanaryHour -1}h`)
+        const asyncCanaryHour = await callback(asyncPeninsulaHour -1)
+        console.log(`Mientras que en las Canarias son las ${asyncCanaryHour}h`)
     }   catch(err) {
         console.log(err)
     }}
@@ -154,18 +154,18 @@ const dailyDay = (value) => {
 }
 
 
-async function elMercadoDeLaCripto(bitcoin) {
+async function elMercadoDeLaCripto(bitcoin, callback) {
     try{
-        const yesterdayBitcoin = await dailyDay(bitcoin)
+        const yesterdayBitcoin = await callback(bitcoin)
         console.log(`Ayer el precio del bitcoin era de ${yesterdayBitcoin.rawNumber}€`)
-        const todayBitcoin = await dailyDay(bitcoin)
+        const todayBitcoin = await callback(bitcoin)
         console.log(`Hoy el precio del bitcoin es de ${todayBitcoin.doubleNumber}€`)
     }   catch(err) {
         console.log(err)
     }}
 
 
-elMercadoDeLaCripto(20000)
+elMercadoDeLaCripto(20000, dailyDay)
 
 
 /*
