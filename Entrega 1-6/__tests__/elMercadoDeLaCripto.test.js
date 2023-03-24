@@ -28,6 +28,33 @@ describe("Callback", () => {
 })
 
 describe("Console log del interior", () => {
-    test("")
-})
+    test("El console log es llamado dos veces", async() => {
+        const consoleSpy = jest.spyOn(console, "log")
+        const mockCallback = jest.fn().mockReturnValue(3000)
+        await elMercadoDeLaCripto(3000, mockCallback)
+        expect(consoleSpy).toHaveBeenCalledTimes(2)
+        consoleSpy.mockRestore()
+    })
 
+    test("El console log es llamado con el parámetro correcto", async() => {
+        const consoleSpy = jest.spyOn(console, "log")
+        const mockCallback = jest.fn().mockReturnValue(3000)
+        await elMercadoDeLaCripto(3000, mockCallback)
+        expect(consoleSpy).toHaveBeenCalledWith("Ayer el precio del bitcoin era de 3000€")
+        // Mirar código comentado de elMercadoDeLaCripto.js
+        // cuando añadimos la propiedad, en el testing, nos devuelve undefined
+        // sin la propiedad, nos devuelve el número pero las dos veces igual, sin ser el doble
+        // Sin embargo, con la propiedad ejecutando el archivo app, se da el comportamiento esperado
+        // parece que en el testing no se esté esperando los 3 seg y por lo tanto, no se calcule el doble en dailyDay.js
+        consoleSpy.mockRestore()
+    })
+
+    test("El console log es llamado por última vez con el doble del parámetro", async() => {
+        const consoleSpy = jest.spyOn(console, "log")
+        const mockCallback = jest.fn().mockReturnValue(3000)
+        await elMercadoDeLaCripto(3000, mockCallback)
+        expect(consoleSpy).toHaveBeenLastCalledWith("Hoy el precio del bitcoin es de 6000€")
+        // 
+        consoleSpy.mockRestore()
+    })
+})
