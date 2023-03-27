@@ -149,7 +149,7 @@ for (let caller = 0; caller < 10; caller++) {
 
 /*
 --Nivell 3
-- Exercici 1
+- Exercici 2
 Crea una funció anònima autoinvocable igualada a una variable que mostri per consola
 el nom de l'usuari/ària a rebut com a paràmetre.
 */
