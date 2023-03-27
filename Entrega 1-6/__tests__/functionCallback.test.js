@@ -3,7 +3,7 @@ Crea un arxiu amb les funcions sumar, restar, multiplicar i
 dividir dos o més operands. Testeja la correcta execució d'aquestes funcions.
 */
 
-const {callbackFunction} = require('../../Entrega 1-3')
+const {callbackFunction} = require('../app/callbackFunction')
 
 test('se recibe un número mayor de 3, por lo tanto imprime el mensaje dentro del if', () => {
    expect(callbackFunction(6)).toBe("Es correcto")
