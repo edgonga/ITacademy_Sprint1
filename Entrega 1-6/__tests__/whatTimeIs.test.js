@@ -31,7 +31,8 @@ describe("whatTimeIs function", () => {
     const consoleSpy = jest.spyOn(console, "log");
     const mockCallback = jest.fn().mockReturnValue(12);
     await whatTimeIs(12, mockCallback);
-    expect(consoleSpy).toHaveBeenLastCalledWith("Mientras que en las Canarias son las 11h");
+    expect(consoleSpy).toHaveBeenLastCalledWith("Mientras que en las Canarias son las 11h")
+    // Como sucede en elMercadoDeLaCripto.test.js la segunda llamada a dailyDay no se está calculando el doble del parámetro
     consoleSpy.mockRestore();
   });
   
