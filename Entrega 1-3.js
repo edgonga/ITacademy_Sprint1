@@ -56,19 +56,17 @@ Crea una arrow function que rebi un paràmetre i una funció callback
  (que s'imprimirà per consola) en funció del paràmetre rebut.
 */
 
-
 const callbackFunction = (parametro) => {
     const num_parametro = parseInt(parametro)
-    if (num_parametro > 3 && typeof(num_parametro) === 'number') {
-        return console.log("Es correcto")
+    if (num_parametro < 3 || typeof(num_parametro) !== 'number') {
+        console.log("Incorrecto") 
     }
     else {
-        console.log("Incorrecto")
+        console.log("Correcto"); 
     }
 }
 
 const implementCallback = (callback, callbackParameter) => {
-    
     callback(callbackParameter)
 }
 
@@ -106,17 +104,8 @@ let salaries = [{
     salary: 2000
 }];
 
-
-
-
-
-
-
-
-
 const getEmployee = (employeeID) => {
     return new Promise((resolve, reject) => {
-
         if (typeof employeeID !== 'number') {
             reject('Este id no existe')
         }
@@ -124,18 +113,17 @@ const getEmployee = (employeeID) => {
         if (employeeSelected) {
             resolve(employeeSelected)
         } else {
-
             reject('Failed')
         }
     })
 }
 
-// getEmployee(1)
-//     .then((res) =>
-//         console.log({
-//             EmployeeName: res})
-//     )
-//     .catch((error) => console.log("Error: " + error))
+getEmployee(1)
+    .then((res) =>
+        console.log({
+            EmployeeName: res})
+    )
+    .catch((error) => console.log("Error: " + error))
 
 
 
@@ -146,10 +134,8 @@ Crea una altra arrow function getSalary() similar a l'anterior
 que rebi com a paràmetre un objecte employee i retorni el seu salari.
 */
 
-
 const getSalary = (employeeResult) => {
     return new Promise((resolve, reject) => {
-
         if (typeof employeeResult !== 'object') {
             reject('El parámetro no es un objeto o el índice no existe')
         }
@@ -165,8 +151,6 @@ getSalary(employees[2])
     .then((res) => {console.log(`Salario empleado: ${res}`)})
     .catch((error) => {console.log(`Error: ${error}`)})
 
-
-
 /*
 -- Nivell 2
 - Exercici 3
@@ -176,19 +160,19 @@ Invoca la primera funció getEmployee() i després getSalary()
 */
 
 
-// getEmployee(2)
-//     .then((res1) => {
-//         getSalary(res1)
-//             .then(res2 => {
-//                 console.log(`Nombre: ${res1.name} y salario: ${res2}`)
-//             })
-//             .catch((err2) =>{
-//                 console.log(err2)
-//             })
-//     })
-//     .catch(err1 => {
-//         console.log(err1)
-//     })
+getEmployee(2)
+    .then((res1) => {
+        getSalary(res1)
+            .then(res2 => {
+                console.log(`Nombre: ${res1.name} y salario: ${res2}`)
+            })
+            .catch((err2) =>{
+                console.log(err2)
+            })
+    })
+    .catch(err1 => {
+        console.log(err1)
+    })
 
 
 
@@ -201,23 +185,19 @@ nivell anterior que capturi qualsevol error i el
  mostri per la consola.
 */
 
-// getEmployee(salaries[1])
-//     .then((res1) => {
-//         getSalary()
-//             .then(res2 => {
-//                 console.log(res1.name + ' ' + res2.salary)
-//             })
-//             .catch(error2 => {
-//                 console.log('Super erreur' + error2)
-//             })
-//     })
-//     .catch(error1 => {
-//         console.log('Erreur ' + error1)
-//     })
-
-
-
-
+getEmployee(salaries[1])
+    .then((res1) => {
+        getSalary()
+            .then(res2 => {
+                console.log(res1.name + ' ' + res2.salary)
+            })
+            .catch(error2 => {
+                console.log('Super erreur' + error2)
+            })
+    })
+    .catch(error1 => {
+        console.log('Erreur ' + error1)
+    })
 
 module.exports = {
     callbackFunction,
